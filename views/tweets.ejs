@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title><%= title %></title>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/3.3.7/yeti/bootstrap.min.css">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+        <script src="http://momentjs.com/downloads/moment.js"></script>
+        <script src="https://rawgit.com/mattbradley/livestampjs/1.1.2/livestamp.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.5/js/bootstrap.min.js"></script>
+    </head>
+    <body>
+        <div class="container">
+        <h1>최근 지진 트윗 <small><a class="pull-right btn btn-primary" href="/"><span class="glyphicon glyphicon-home" aria-hidden="true"></span></a></small></h1>
+        <div class="table-responsive">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Sender</th>
+                        <th>Message</th>
+                        <th>When</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% tweets.forEach( function( tweet ){ %>
+                    <% 
+                        var tcolor = "";
+                        if(tweet.type == "earthquake") {
+                            tcolor = "danger";
+                        } else if(tweet.type == "notice") {
+                            tcolor = "info";
+                        }
+                    %>
+                <tr class="<%= tcolor %>">
+                    <td>
+                        <span>
+                            <%= tweet.user_name %>
+                        </span>
+                    </td>
+                    <td>
+                    <%= tweet.text %>
+                    </td>
+                    <td style="white-space: nowrap;">
+                        <span data-toggle="tooltip" data-placement="left" title="<%= tweet.tweeted_at %>">
+                            <script>
+
+                            document.write(moment(<%= tweet.tweeted_at.getTime() %>).format('LTS'));
+                            </script>
+                        </span>
+                    </td>
+                </tr>
+                <% }); %>
+                </tbody>
+              </table>
+          </div>
+      </div>
+    </body>
+    <script>
+        $(function () {
+            $('[data-toggle="tooltip"]').tooltip({
+                container : 'body'
+            });
+        });
+    </script>
+</html>

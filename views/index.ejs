@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title><%= title %></title>
+    
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/3.3.7/yeti/bootstrap.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+    <script src="http://momentjs.com/downloads/moment.js"></script>
+    <script src="https://rawgit.com/mattbradley/livestampjs/1.1.2/livestamp.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.5/js/bootstrap.min.js"></script>
+    
+    <style>
+      .btn {
+        margin-top: 5px;
+      }
+
+    </style>
+  </head>
+  <body>
+  <div class="container">
+<h1>EQ 지진 알리미</h1>
+<p>EQ 지진 알리미는 다양한 곳에서 지진 정보를 수집하고, 지진이 의심되거나 발생했을 경우 <a target="_blank" href="https://twitter.com/KoreaEarthquake">트위터</a>와 <a target="_blank" href="https://telegram.me/KoreaEarthquake">텔레그램</a>, <a target="_blank" href="https://t.co/5CXz2XPJeA">EQ 지진 알림 앱</a>(현재는 안드로이드만 가능)을 통해 즉시 알려드리는 서비스입니다.</p>
+<h3>트윗 지진 관련 안내</h3>
+<p>EQ 지진 알리미는 실시간으로 지진 관련 트윗을 <a target="_blank" href="https://dev.twitter.com/streaming/overview">Twitter Streaming API</a>을 이용해서 수집하고, Twitter Streaming API의 한계로 인해 수집되지 않는 트윗은 <a target="_blank" href="https://dev.twitter.com/rest/public/search">Twitter Search API</a>를 이용해서 일정 시간마다 수집하고 있습니다.</p>
+<p>일정 시간동안 지진 관련 트윗이 많이 올라올 경우 트윗 지진으로 의심하고 트위터로 알려드립니다. 최대한 지진과 관련이 없는 트윗을 걸러내고 있습니다만, 간혹 필터에 걸리지 않는 트윗으로 인해 잘못 알림이 나갈수도 있습니다.</p>
+
+<p>
+  <div class="btn-toolbar">
+    <a target="_blank" href="https://twitter.com/KoreaEarthquake" class="btn btn-info">트위터</a>
+    <a target="_blank" href="https://telegram.me/KoreaEarthquake" class="btn btn-info">텔레그렘</a>
+    <a target="_blank" href="https://t.co/5CXz2XPJeA" class="btn btn-info">Play Store</a>
+    <a href="/tweets" class="btn btn-default">지진 관련 트윗 보기</a>
+  </div>
+</p>
+
+<!--<p><a target="_blank" href="https://twitter.com/KoreaEarthquake" class="btn btn-info">트위터 가기</a></p>-->
+  </body>
+  <script>
+  $(function () {
+  $('[data-toggle="tooltip"]').tooltip({
+    container : 'body'
+  });
+});
+</script>
+</html>
